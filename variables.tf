@@ -54,6 +54,12 @@ variable "access_policies" {
   description = "List of objects that represent the configuration of each access policies."
   # access_policies = [{ object_id = "", application_id = "", key_permissions = "", secret_permissions = "", certificate_permissions = "", storage_permissions = "" }]
 }
+variable "keys" {
+  type        = list(map(string))
+  default     = []
+  description = "List of objects that represent the configuration of each key."
+  # keys = [{ name = "", key_type = "", key_size = "", curse = "", key_opts = "", not_before_date = "", expiration_date = "" }]
+}
 variable "contacts" {
   type        = list(map(string))
   default     = []
