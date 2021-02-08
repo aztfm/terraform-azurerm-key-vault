@@ -2,6 +2,14 @@
 
 FEATURES:
 
+* **New Parameter:** `keys`
+* **New Parameter:** `keys.name`
+* **New Parameter:** `keys.key_type`
+* **New Parameter:** `keys.key_size`
+* **New Parameter:** `keys.curse`
+* **New Parameter:** `keys.key_opts`
+* **New Parameter:** `keys.not_before_date`
+* **New Parameter:** `keys.expiration_date`
 * **New Parameter:** `secrets`
 * **New Parameter:** `secrets.name`
 * **New Parameter:** `secrets.value`
