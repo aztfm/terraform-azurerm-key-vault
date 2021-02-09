@@ -58,7 +58,7 @@ variable "keys" {
   type        = list(map(string))
   default     = []
   description = "List of objects that represent the configuration of each key."
-  # keys = [{ name = "", key_type = "", key_size = "", curse = "", key_opts = "", not_before_date = "", expiration_date = "" }]
+  # keys = [{ name = "", key_type = "", key_size = "", curve = "", key_opts = "", not_before_date = "", expiration_date = "" }]
 }
 variable "contacts" {
   type        = list(map(string))

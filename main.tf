@@ -42,8 +42,8 @@ resource "azurerm_key_vault_key" "vault" {
   name            = each.value.name
   key_type        = each.value.key_type
   key_size        = lookup(each.value, "key_size", null)
-  curse           = lookup(each.value, "curse", null)
-  key_opts        = lookup(each.value, "key_opts", "") == "" ? null : split(",", access_policy.value.key_opts)
+  curve           = lookup(each.value, "curve", null)
+  key_opts        = lookup(each.value, "key_opts", "") == "" ? null : split(",", each.value.key_opts)
   not_before_date = lookup(each.value, "not_before_date", null)
   expiration_date = lookup(each.value, "expiration_date", null)
 }
