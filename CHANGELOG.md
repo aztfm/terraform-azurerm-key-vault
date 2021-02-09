@@ -6,7 +6,7 @@ FEATURES:
 * **New Parameter:** `keys.name`
 * **New Parameter:** `keys.key_type`
 * **New Parameter:** `keys.key_size`
-* **New Parameter:** `keys.curse`
+* **New Parameter:** `keys.curve`
 * **New Parameter:** `keys.key_opts`
 * **New Parameter:** `keys.not_before_date`
 * **New Parameter:** `keys.expiration_date`
