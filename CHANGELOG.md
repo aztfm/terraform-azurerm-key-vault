@@ -1,3 +1,14 @@
+## 1.1.0 (Unreleased)
+
+FEATURES:
+
+* **New Parameter:** `secrets`
+* **New Parameter:** `secrets.name`
+* **New Parameter:** `secrets.value`
+* **New Parameter:** `secrets.content_type`
+* **New Parameter:** `secrets.not_before_date`
+* **New Parameter:** `secrets.expiration_date`
+
 ## 1.0.0 (January 25, 2021)
 
 FEATURES:
