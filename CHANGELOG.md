@@ -1,3 +1,16 @@
+## 1.1.0 (Unreleased)
+
+FEATURES:
+
+* **New Parameter:** `keys`
+* **New Parameter:** `keys.name`
+* **New Parameter:** `keys.key_type`
+* **New Parameter:** `keys.key_size`
+* **New Parameter:** `keys.curve`
+* **New Parameter:** `keys.key_opts`
+* **New Parameter:** `keys.not_before_date`
+* **New Parameter:** `keys.expiration_date`
+
 ## 1.0.0 (January 25, 2021)
 
 FEATURES:
