@@ -4,6 +4,7 @@ resource "azurerm_key_vault" "vault" {
   location                        = var.location
   sku_name                        = lower(var.sku_name)
   tenant_id                       = var.tenant_id
+  soft_delete_enabled             = true
   soft_delete_retention_days      = var.soft_delete_retention_days
   purge_protection_enabled        = var.purge_protection_enabled
   enabled_for_deployment          = var.enabled_for_deployment

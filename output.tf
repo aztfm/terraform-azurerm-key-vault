@@ -18,6 +18,14 @@ output "access_policies" {
   value       = azurerm_key_vault.vault.access_policy
   description = "Blocks containing configuration of each access policy."
 }
+output "keys" {
+  value       = azurerm_key_vault.vault.access_policy
+  description = "Blocks containing configuration of each key."
+}
+output "secrets" {
+  value       = azurerm_key_vault.vault.access_policy
+  description = "Blocks containing configuration of each secret."
+}
 output "contacts" {
   value       = azurerm_key_vault.vault.contact
   description = "Blocks containing each contact."
