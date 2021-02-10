@@ -30,8 +30,7 @@ The following parameters are supported:
 | contacts                          | List of objects that represent each contact.                                                                                        | `list(map(string))` |  `[]`   |    no    |
 | tags                              | A mapping of tags to assign to the resource.                                                                                        |    `map(string)`    |  `{}`   |    no    |
 
-##
-The `access_policies` supports the following:
+ The `access_policies` supports the following:
 
 | Name                     | Description                                                                                                                                                                                                                                                                |   Type   | Default | Required |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | :-----: | :------: |
@@ -42,7 +41,28 @@ The `access_policies` supports the following:
 | certificate\_permissions | List of secret permissions, must be one or more from the following: `backup`, `delete`, `get`, `list`, `purge`, `recover`, `restore` and `set`.                                                                                                                            | `string` | `null`  |    no    |
 | storage\_permissions     | List of storage permissions, must be one or more from the following: `backup`, `delete`, `deletesas`, `get`, `getsas`, `list`, `listsas`, `purge`, `recover`, `regeneratekey`, `restore`, `set`, `setsas` and `update`.                                                    | `string` | `null`  |    no    |
 
-##
+The `keys` supports the following:
+
+| Name              | Description                                                                                                                                        |   Type   | Default | Required |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | :------: | :-----: | :------: |
+| name              | Specifies the name of the Key Vault Key.                                                                                                           | `string` |   n/a   |   yes    |
+| key\_type         | Specifies the Key Type to use for this Key Vault Key. Possible values are `EC` (Elliptic Curve), `EC-HSM`, `Oct` (Octet), `RSA` and `RSA-HSM`.     | `string` |   n/a   |   yes    |
+| key\_size         | Specifies the Size of the RSA key to create in bytes. For example, 1024 or 2048. Note: This field is required if `key_type` is `RSA` or `RSA-HSM`. | `string` | `null`  |    no    |
+| curve             | Specifies the curve to use when creating an `EC` key. Possible values are `P-256`, `P-384`, `P-521`, and `SECP256K1`.                              | `string` | `null`  |    no    |
+| key\_opts         | A list of JSON web key operations. Possible values include: `decrypt`, `encrypt`, `sign`, `unwrapKey`, `verify` and `wrapKey`.                     | `string` | `null`  |    no    |
+| not\_before\_date | Key not usable before the provided UTC datetime (Y-m-d'T'H:M:S'Z').                                                                                | `string` | `null`  |    no    |
+| expiration\_date  | Expiration UTC datetime (Y-m-d'T'H:M:S'Z').                                                                                                        | `string` | `null`  |    no    |
+
+The `secrets` supports the following:
+
+| Name              | Description |   Type   | Default | Required |
+| ----------------- | ----------- | :------: | :-----: | :------: |
+| name              |             | `string` |   n/a   |   yes    |
+| value             |             | `string` | `null`  |    no    |
+| content\_type     |             | `string` | `null`  |    no    |
+| not\_before\_date |             | `string` | `null`  |    no    |
+| expiration\_date  |             | `string` | `null`  |    no    |
+
 The `contacts` supports the following:
 
 | Name  | Description                    |   Type   | Default | Required |
@@ -50,3 +70,19 @@ The `contacts` supports the following:
 | email | E-mail address of the contact. | `string` |   n/a   |   yes    |
 | name  | Name of the contact.           | `string` | `null`  |    no    |
 | phone | Phone number of the contact.   | `string` | `null`  |    no    |
+
+## Outputs
+
+The following outputs are exported:
+
+| Name                  | Description                                                        |
+| --------------------- | ------------------------------------------------------------------ |
+| id                    | The route table configuration ID.                                  |
+| name                  | The name of the route table.                                       |
+| resource\_group\_name | The name of the resource group in which to create the route table. |
+| location              | The location/region where the route table is created.              |
+| access\_policies      | Blocks containing configuration of each access policy.             |
+| keys                  | Blocks containing configuration of each key.                       |
+| secrets               | Blocks containing configuration of each secret.                    |
+| contacts              | Blocks containing each contact.                                    |
+| tags                  | The tags assigned to the resource.                                 |
