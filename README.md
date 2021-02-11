@@ -49,19 +49,19 @@ The `keys` supports the following:
 | key\_type         | Specifies the Key Type to use for this Key Vault Key. Possible values are `EC` (Elliptic Curve), `EC-HSM`, `Oct` (Octet), `RSA` and `RSA-HSM`.     | `string` |   n/a   |   yes    |
 | key\_size         | Specifies the Size of the RSA key to create in bytes. For example, 1024 or 2048. Note: This field is required if `key_type` is `RSA` or `RSA-HSM`. | `string` | `null`  |    no    |
 | curve             | Specifies the curve to use when creating an `EC` key. Possible values are `P-256`, `P-384`, `P-521`, and `SECP256K1`.                              | `string` | `null`  |    no    |
-| key\_opts         | A list of JSON web key operations. Possible values include: `decrypt`, `encrypt`, `sign`, `unwrapKey`, `verify` and `wrapKey`.                     | `string` | `null`  |    no    |
+| key\_opts         | A list of JSON web key operations. Possible values include: `decrypt`, `encrypt`, `sign`, `unwrapKey`, `verify` and `wrapKey`.                     | `string` | `null`  |   yes    |
 | not\_before\_date | Key not usable before the provided UTC datetime (Y-m-d'T'H:M:S'Z').                                                                                | `string` | `null`  |    no    |
 | expiration\_date  | Expiration UTC datetime (Y-m-d'T'H:M:S'Z').                                                                                                        | `string` | `null`  |    no    |
 
 The `secrets` supports the following:
 
-| Name              | Description |   Type   | Default | Required |
-| ----------------- | ----------- | :------: | :-----: | :------: |
-| name              |             | `string` |   n/a   |   yes    |
-| value             |             | `string` | `null`  |    no    |
-| content\_type     |             | `string` | `null`  |    no    |
-| not\_before\_date |             | `string` | `null`  |    no    |
-| expiration\_date  |             | `string` | `null`  |    no    |
+| Name              | Description                                                         |   Type   | Default | Required |
+| ----------------- | ------------------------------------------------------------------- | :------: | :-----: | :------: |
+| name              | Specifies the name of the Key Vault Secret.                         | `string` |   n/a   |   yes    |
+| value             | Specifies the value of the Key Vault Secret.                        | `string` | `null`  |   yes    |
+| content\_type     | Specifies the content type for the Key Vault Secret.                | `string` | `null`  |    no    |
+| not\_before\_date | Key not usable before the provided UTC datetime (Y-m-d'T'H:M:S'Z'). | `string` | `null`  |    no    |
+| expiration\_date  | Expiration UTC datetime (Y-m-d'T'H:M:S'Z').                         | `string` | `null`  |    no    |
 
 The `contacts` supports the following:
 
