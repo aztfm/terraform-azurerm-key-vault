@@ -4,6 +4,7 @@ resource "azurerm_key_vault" "vault" {
   location                        = var.location
   sku_name                        = lower(var.sku_name)
   tenant_id                       = var.tenant_id
+  soft_delete_enabled             = true
   soft_delete_retention_days      = var.soft_delete_retention_days
   purge_protection_enabled        = var.purge_protection_enabled
   enabled_for_deployment          = var.enabled_for_deployment
@@ -34,4 +35,26 @@ resource "azurerm_key_vault" "vault" {
   }
 
   tags = var.tags
+}
+
+resource "azurerm_key_vault_key" "vault" {
+  for_each        = { for key in var.keys : key.name => key }
+  key_vault_id    = azurerm_key_vault.vault.id
+  name            = each.value.name
+  key_type        = each.value.key_type
+  key_size        = lookup(each.value, "key_size", null)
+  curve           = lookup(each.value, "curve", null)
+  key_opts        = lookup(each.value, "key_opts", "") == "" ? null : split(",", each.value.key_opts)
+  not_before_date = lookup(each.value, "not_before_date", null)
+  expiration_date = lookup(each.value, "expiration_date", null)
+}
+
+resource "azurerm_key_vault_secret" "vault" {
+  for_each        = { for secret in var.secrets : secret.name => secret }
+  key_vault_id    = azurerm_key_vault.vault.id
+  name            = each.value.name
+  value           = each.value.value
+  content_type    = lookup(each.value, "content_type", null)
+  not_before_date = lookup(each.value, "not_before_date", null)
+  expiration_date = lookup(each.value, "expiration_date", null)
 }
