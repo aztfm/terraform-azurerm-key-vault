@@ -20,7 +20,7 @@ module "key-vault" {
   access_policies = [
     {
       object_id          = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXX"
-      secret_permissions = "backup,delete,get,list,purge,recover,restore,set"
+      secret_permissions = "set,get,delete,purge,recover"
     }
   ]
   secrects = [{ name = "secrect-1", value = "text" }]

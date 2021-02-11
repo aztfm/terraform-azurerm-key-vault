@@ -19,8 +19,8 @@ module "key-vault" {
   tenant_id           = data.azurerm_client_config.current.tenant_id
   access_policies = [
     {
-      object_id          = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXX"
-      secret_permissions = "backup,delete,get,list,purge,recover,restore,set"
+      object_id       = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXX"
+      key_permissions = "create,get,purge,recover"
     }
   ]
   keys = [{ name = "key-1", key_type = "RSA", key_size = "2048", key_opts = "decrypt,encrypt,sign,unwrapKey,verify,wrapKey" }]
