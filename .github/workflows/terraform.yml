@@ -30,7 +30,7 @@ jobs:
         run: git clone https://github.com/aztfm/terraform-azurerm-key-vault.git
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1.2.1
+        uses: hashicorp/setup-terraform@v3.0.0
 
       - name: Terraform init
         run: terraform init
