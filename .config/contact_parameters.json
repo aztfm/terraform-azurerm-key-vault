@@ -1,0 +1,26 @@
+[
+    {
+        "Name": "email",
+        "Description": "E-mail address of the contact.",
+        "Type": "string",
+        "Default": "n/a",
+        "Required": "yes",
+        "Support": []
+    },
+    {
+        "Name": "name",
+        "Description": "Name of the contact.",
+        "Type": "string",
+        "Default": "null",
+        "Required": "no",
+        "Support": []
+    },
+    {
+        "Name": "phone",
+        "Description": "Phone number of the contact.",
+        "Type": "string",
+        "Default": "null",
+        "Required": "no",
+        "Support": []
+    }
+]
