@@ -8,7 +8,9 @@ run "setup" {
   }
 }
 
-variables {}
+variables {
+  sku_name = "Standard"
+}
 
 run "plan" {
   command = plan
@@ -17,6 +19,7 @@ run "plan" {
     name                = run.setup.workspace_id
     resource_group_name = run.setup.resource_group_name
     location            = run.setup.resource_group_location
+    tenant_id           = run.setup.tenant_id
   }
 
   assert {
@@ -42,5 +45,6 @@ run "apply" {
     name                = run.setup.workspace_id
     resource_group_name = run.setup.resource_group_name
     location            = run.setup.resource_group_location
+    tenant_id           = run.setup.tenant_id
   }
 }
