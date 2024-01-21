@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD041 MD013 -->
 ## 1.1.0 (February 11, 2021)
 
 FEATURES:
