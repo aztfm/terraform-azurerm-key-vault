@@ -1,0 +1,108 @@
+[
+    {
+        "Name": "object_id",
+        "Description": "The object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies.",
+        "Type": "string",
+        "Default": "n/a",
+        "Required": "yes",
+        "Support": []
+    },
+    {
+        "Name": "application_id",
+        "Description": "The object ID of an Application in Azure Active Directory.",
+        "Type": "string",
+        "Default": "null",
+        "Required": "no",
+        "Support": []
+    },
+    {
+        "Name": "key_permissions",
+        "Description": "List of certificate permissions, must be one or more from the following:",
+        "Type": "string",
+        "Default": "null",
+        "Required": "no",
+        "Support": [
+            "Get",
+            "List",
+            "Update",
+            "Create",
+            "Import",
+            "Delete",
+            "Recover",
+            "Backup",
+            "Restore",
+            "Decrypt",
+            "Encrypt",
+            "UnwrapKey",
+            "WrapKey",
+            "Verify",
+            "Sign",
+            "Purge"
+        ]
+    },
+    {
+        "Name": "secret_permissions",
+        "Description": "List of key permissions, must be one or more from the following:",
+        "Type": "string",
+        "Default": "null",
+        "Required": "no",
+        "Support": [
+            "Get",
+            "List",
+            "Set",
+            "Delete",
+            "Recover",
+            "Backup",
+            "Restore",
+            "Purge"
+        ]
+    },
+    {
+        "Name": "certificate_permissions",
+        "Description": "List of certificate permissions, must be one or more from the following:",
+        "Type": "string",
+        "Default": "null",
+        "Required": "no",
+        "Support": [
+            "Get",
+            "List",
+            "Update",
+            "Create",
+            "Import",
+            "Delete",
+            "Recover",
+            "Backup",
+            "Restore",
+            "GetIssuers",
+            "SetIssuers",
+            "ListIssuers",
+            "DeleteIssuers",
+            "ManageContacts",
+            "ManageIssuers",
+            "Purge"
+        ]
+    },
+    {
+        "Name": "storage_permissions",
+        "Description": "List of storage permissions, must be one or more from the following:",
+        "Type": "string",
+        "Default": "null",
+        "Required": "no",
+        "Support": [
+            "Get",
+            "List",
+            "Update",
+            "Set",
+            "Delete",
+            "Recover",
+            "Backup",
+            "Restore",
+            "GetSAS",
+            "ListSAS",
+            "SetSAS",
+            "DeleteSAS",
+            "RegenerateKey",
+            "Purge"
+        ]
+    }
+]
