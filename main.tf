@@ -2,9 +2,9 @@ resource "azurerm_key_vault" "vault" {
   name                            = var.name
   resource_group_name             = var.resource_group_name
   location                        = var.location
+  tags                            = var.tags
   sku_name                        = lower(var.sku_name)
   tenant_id                       = var.tenant_id
-  soft_delete_enabled             = true
   soft_delete_retention_days      = var.soft_delete_retention_days
   purge_protection_enabled        = var.purge_protection_enabled
   enabled_for_deployment          = var.enabled_for_deployment
@@ -14,6 +14,7 @@ resource "azurerm_key_vault" "vault" {
 
   dynamic "access_policy" {
     for_each = var.access_policies
+
     content {
       tenant_id               = var.tenant_id
       object_id               = access_policy.value.object_id
@@ -27,14 +28,13 @@ resource "azurerm_key_vault" "vault" {
 
   dynamic "contact" {
     for_each = var.contacts
+
     content {
       email = contact.value.email
       name  = lookup(contact.value, "name", null)
       phone = lookup(contact.value, "phone", null)
     }
   }
-
-  tags = var.tags
 }
 
 resource "azurerm_key_vault_key" "vault" {
