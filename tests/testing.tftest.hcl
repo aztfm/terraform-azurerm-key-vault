@@ -42,7 +42,7 @@ run "apply" {
   command = apply
 
   variables {
-    name                = substr(run.setup.workspace_id, 0, 23)
+    name                = run.setup.workspace_id
     resource_group_name = run.setup.resource_group_name
     location            = run.setup.resource_group_location
     tenant_id           = run.setup.tenant_id
