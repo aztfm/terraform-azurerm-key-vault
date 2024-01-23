@@ -1,3 +1,3 @@
 locals {
-  workspace_id = uuid()
+  workspace_id = substr(uuid(), 0, 23)
 }
