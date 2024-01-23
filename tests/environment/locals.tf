@@ -1,3 +1,3 @@
 locals {
-  workspace_id = substr(uuid(), 0, 23)
+  workspace_id = "a${substr(uuid(), 1, 23)}"
 }
