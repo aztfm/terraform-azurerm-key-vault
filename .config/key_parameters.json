@@ -39,8 +39,8 @@
     {
         "Name": "key_opts",
         "Description": "A list of JSON web key operations. Possible values include:",
-        "Type": "string",
-        "Default": "null",
+        "Type": "list(string)",
+        "Default": "[]",
         "Required": "yes",
         "Support": [
             "decrypt",

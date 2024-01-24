@@ -32,10 +32,10 @@ The following parameters are supported:
 |enabled\_for\_disk\_encryption|Boolean flag to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys.|`bool`|`false`|no|
 |enabled\_for\_template\_deployment|Boolean flag to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault.|`bool`|`false`|no|
 |enable\_rbac\_authorization|Boolean flag to specify whether Azure Key Vault uses Role Based Access Control (RBAC) for authorization of data actions.|`bool`|`false`|no|
-|access\_policies|List of objects that represent the configuration of each access policies.|`list(map(string))`|`[]`|no|
-|keys|List of objects that represent the configuration of each key.|`list(map(string))`|`[]`|no|
-|secrets|List of objects that represent the configuration of each secrect.|`list(map(string))`|`[]`|no|
-|contacts|List of objects that represent each contact.|`list(map(string))`|`[]`|no|
+|access\_policies|List of objects that represent the configuration of each access policies.|`list(object({}))`|`[]`|no|
+|keys|List of objects that represent the configuration of each key.|`list(object({}))`|`[]`|no|
+|secrets|List of objects that represent the configuration of each secrect.|`list(object({}))`|`[]`|no|
+|contacts|List of objects that represent each contact.|`list(object({}))`|`[]`|no|
 
 The `access_policies` supports the following:
 
@@ -43,10 +43,10 @@ The `access_policies` supports the following:
 | ---- | ------------| :--: | :-----: | :------: |
 |object\_id|The object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies.|`string`|n/a|yes|
 |application\_id|The object ID of an Application in Azure Active Directory.|`string`|`null`|no|
-|key\_permissions|List of certificate permissions, must be one or more from the following: `Get`, `List`, `Update`, `Create`, `Import`, `Delete`, `Recover`, `Backup`, `Restore`, `Decrypt`, `Encrypt`, `UnwrapKey`, `WrapKey`, `Verify`, `Sign` and `Purge`.|`string`|`null`|no|
-|secret\_permissions|List of key permissions, must be one or more from the following: `Get`, `List`, `Set`, `Delete`, `Recover`, `Backup`, `Restore` and `Purge`.|`string`|`null`|no|
-|certificate\_permissions|List of certificate permissions, must be one or more from the following: `Get`, `List`, `Update`, `Create`, `Import`, `Delete`, `Recover`, `Backup`, `Restore`, `GetIssuers`, `SetIssuers`, `ListIssuers`, `DeleteIssuers`, `ManageContacts`, `ManageIssuers` and `Purge`.|`string`|`null`|no|
-|storage\_permissions|List of storage permissions, must be one or more from the following: `Get`, `List`, `Update`, `Set`, `Delete`, `Recover`, `Backup`, `Restore`, `GetSAS`, `ListSAS`, `SetSAS`, `DeleteSAS`, `RegenerateKey` and `Purge`.|`string`|`null`|no|
+|key\_permissions|List of certificate permissions, must be one or more from the following: `Get`, `List`, `Update`, `Create`, `Import`, `Delete`, `Recover`, `Backup`, `Restore`, `Decrypt`, `Encrypt`, `UnwrapKey`, `WrapKey`, `Verify`, `Sign` and `Purge`.|`list(string)`|`[]`|no|
+|secret\_permissions|List of key permissions, must be one or more from the following: `Get`, `List`, `Set`, `Delete`, `Recover`, `Backup`, `Restore` and `Purge`.|`list(string)`|`[]`|no|
+|certificate\_permissions|List of certificate permissions, must be one or more from the following: `Get`, `List`, `Update`, `Create`, `Import`, `Delete`, `Recover`, `Backup`, `Restore`, `GetIssuers`, `SetIssuers`, `ListIssuers`, `DeleteIssuers`, `ManageContacts`, `ManageIssuers` and `Purge`.|`list(string)`|`[]`|no|
+|storage\_permissions|List of storage permissions, must be one or more from the following: `Get`, `List`, `Update`, `Set`, `Delete`, `Recover`, `Backup`, `Restore`, `GetSAS`, `ListSAS`, `SetSAS`, `DeleteSAS`, `RegenerateKey` and `Purge`.|`list(string)`|`[]`|no|
 
 The `keys` supports the following:
 
@@ -56,7 +56,7 @@ The `keys` supports the following:
 |key\_type|Specifies the Key Type to use for this Key Vault Key. Possible values are `EC` (Elliptic Curve), `EC-HSM`, `Oct` (Octet), `RSA` and `RSA-HSM`.|`string`|n/a|yes|
 |key\_size|Specifies the Size of the RSA key to create in bytes. For example, 1024 or 2048. Note: This field is required if `key_type` is `RSA` or `RSA-HSM`.|`string`|`null`|no|
 |curve|Specifies the curve to use when creating an `EC` key. Possible values are: `P-256`, `P-384`, `P-521` and `SECP256K1`.|`string`|`null`|no|
-|key\_opts|A list of JSON web key operations. Possible values include: `decrypt`, `encrypt`, `sign`, `unwrapKey`, `verify` and `wrapKey`.|`string`|`null`|yes|
+|key\_opts|A list of JSON web key operations. Possible values include: `decrypt`, `encrypt`, `sign`, `unwrapKey`, `verify` and `wrapKey`.|`list(string)`|`[]`|yes|
 |not\_before\_date|Key not usable before the provided UTC datetime (Y-m-d'T'H:M:S'Z').|`string`|`null`|no|
 |expiration\_date|Expiration UTC datetime (Y-m-d'T'H:M:S'Z').|`string`|`null`|no|
 

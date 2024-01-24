@@ -66,29 +66,50 @@ variable "enable_rbac_authorization" {
 }
 
 variable "access_policies" {
-  type        = list(map(string))
+  type = list(object({
+    object_id               = string
+    application_id          = optional(string)
+    key_permissions         = optional(list(string), [])
+    secret_permissions      = optional(list(string), [])
+    certificate_permissions = optional(list(string), [])
+    storage_permissions     = optional(list(string), [])
+  }))
   default     = []
   description = "List of objects that represent the configuration of each access policies."
-  # access_policies = [{ object_id = "", application_id = "", key_permissions = "", secret_permissions = "", certificate_permissions = "", storage_permissions = "" }]
 }
 
 variable "keys" {
-  type        = list(map(string))
+  type = list(object({
+    name            = string
+    key_type        = string
+    key_size        = optional(string)
+    curve           = optional(string)
+    key_opts        = optional(list(string), [])
+    not_before_date = optional(string)
+    expiration_date = optional(string)
+  }))
   default     = []
   description = "List of objects that represent the configuration of each key."
-  # keys = [{ name = "", key_type = "", key_size = "", curve = "", key_opts = "", not_before_date = "", expiration_date = "" }]
 }
 
 variable "secrets" {
-  type        = list(map(string))
+  type = list(object({
+    name            = string
+    value           = string
+    content_type    = optional(string)
+    not_before_date = optional(string)
+    expiration_date = optional(string)
+  }))
   default     = []
   description = "List of objects that represent the configuration of each secrect."
-  # secrets = [{ name = "", value = "", content_type = "", not_before_date = "", expiration_date = ""}]
 }
 
 variable "contacts" {
-  type        = list(map(string))
+  type = list(object({
+    email = string
+    name  = optional(string)
+    phone = optional(string)
+  }))
   default     = []
   description = "List of objects that represent each contact."
-  # contacts = [{ email = "", name = "", phone = "" }]
 }
