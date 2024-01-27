@@ -22,7 +22,7 @@ resource "azurerm_key_vault" "vault" {
       key_permissions         = access_policy.value.key_permissions
       secret_permissions      = access_policy.value.secret_permissions
       certificate_permissions = access_policy.value.certificate_permissions
-      storage_permissions     = access_policy.value.storage_permission
+      storage_permissions     = access_policy.value.storage_permissions
     }
   }
 
