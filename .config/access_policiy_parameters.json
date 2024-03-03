@@ -18,8 +18,8 @@
     {
         "Name": "key_permissions",
         "Description": "List of certificate permissions, must be one or more from the following:",
-        "Type": "string",
-        "Default": "null",
+        "Type": "list(string)",
+        "Default": "[]",
         "Required": "no",
         "Support": [
             "Get",
@@ -43,8 +43,8 @@
     {
         "Name": "secret_permissions",
         "Description": "List of key permissions, must be one or more from the following:",
-        "Type": "string",
-        "Default": "null",
+        "Type": "list(string)",
+        "Default": "[]",
         "Required": "no",
         "Support": [
             "Get",
@@ -60,8 +60,8 @@
     {
         "Name": "certificate_permissions",
         "Description": "List of certificate permissions, must be one or more from the following:",
-        "Type": "string",
-        "Default": "null",
+        "Type": "list(string)",
+        "Default": "[]",
         "Required": "no",
         "Support": [
             "Get",
@@ -85,8 +85,8 @@
     {
         "Name": "storage_permissions",
         "Description": "List of storage permissions, must be one or more from the following:",
-        "Type": "string",
-        "Default": "null",
+        "Type": "list(string)",
+        "Default": "[]",
         "Required": "no",
         "Support": [
             "Get",

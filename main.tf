@@ -18,11 +18,11 @@ resource "azurerm_key_vault" "vault" {
     content {
       tenant_id               = var.tenant_id
       object_id               = access_policy.value.object_id
-      application_id          = lookup(access_policy.value, "application_id", null)
-      key_permissions         = lookup(access_policy.value, "key_permissions", "") == "" ? null : split(",", access_policy.value.key_permissions)
-      secret_permissions      = lookup(access_policy.value, "secret_permissions", "") == "" ? null : split(",", access_policy.value.secret_permissions)
-      certificate_permissions = lookup(access_policy.value, "certificate_permissions", "") == "" ? null : split(",", access_policy.value.certificate_permissions)
-      storage_permissions     = lookup(access_policy.value, "storage_permissions", "") == "" ? null : split(",", access_policy.value.storage_permissions)
+      application_id          = access_policy.value.application_id
+      key_permissions         = access_policy.value.key_permissions
+      secret_permissions      = access_policy.value.secret_permissions
+      certificate_permissions = access_policy.value.certificate_permissions
+      storage_permissions     = access_policy.value.storage_permissions
     }
   }
 
@@ -31,8 +31,8 @@ resource "azurerm_key_vault" "vault" {
 
     content {
       email = contact.value.email
-      name  = lookup(contact.value, "name", null)
-      phone = lookup(contact.value, "phone", null)
+      name  = contact.value.name
+      phone = contact.value.phone
     }
   }
 }
@@ -42,11 +42,11 @@ resource "azurerm_key_vault_key" "vault" {
   key_vault_id    = azurerm_key_vault.vault.id
   name            = each.value.name
   key_type        = each.value.key_type
-  key_size        = lookup(each.value, "key_size", null)
-  curve           = lookup(each.value, "curve", null)
-  key_opts        = lookup(each.value, "key_opts", "") == "" ? null : split(",", each.value.key_opts)
-  not_before_date = lookup(each.value, "not_before_date", null)
-  expiration_date = lookup(each.value, "expiration_date", null)
+  key_size        = each.value.key_size
+  curve           = each.value.curve
+  key_opts        = each.value.key_opts
+  not_before_date = each.value.not_before_date
+  expiration_date = each.value.expiration_date
 }
 
 resource "azurerm_key_vault_secret" "vault" {
@@ -54,7 +54,7 @@ resource "azurerm_key_vault_secret" "vault" {
   key_vault_id    = azurerm_key_vault.vault.id
   name            = each.value.name
   value           = each.value.value
-  content_type    = lookup(each.value, "content_type", null)
-  not_before_date = lookup(each.value, "not_before_date", null)
-  expiration_date = lookup(each.value, "expiration_date", null)
+  content_type    = each.value.content_type
+  not_before_date = each.value.not_before_date
+  expiration_date = each.value.expiration_date
 }
