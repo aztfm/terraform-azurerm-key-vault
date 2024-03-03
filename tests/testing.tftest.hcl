@@ -158,32 +158,32 @@ run "plan" {
   }
 
   assert {
-    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest1"].name == "KeyTest1"
+    condition     = ({ for k in azurerm_key_vault_key.keys.keys : k.name => k })["KeyTest1"].name == "KeyTest1"
     error_message = "The name of the access policy of key 1 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest1"].key_type == "EC"
+    condition     = ({ for k in azurerm_key_vault_key.keys.keys : k.name => k })["KeyTest1"].key_type == "EC"
     error_message = "The key type of the access policy of key 1 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest1"].curve == "P-384"
+    condition     = ({ for k in azurerm_key_vault_key.keys.keys : k.name => k })["KeyTest1"].curve == "P-384"
     error_message = "The curve of the access policy of key 1 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest2"].name == "KeyTest2"
+    condition     = ({ for k in azurerm_key_vault_key.keys.keys : k.name => k })["KeyTest2"].name == "KeyTest2"
     error_message = "The name of the access policy of key 2 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest2"].key_type == "RSA"
+    condition     = ({ for k in azurerm_key_vault_key.keys.keys : k.name => k })["KeyTest2"].key_type == "RSA"
     error_message = "The key type of the access policy of key 2 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest2"].key_size == 2048
+    condition     = ({ for k in azurerm_key_vault_key.keys.keys : k.name => k })["KeyTest2"].key_size == 2048
     error_message = "The key size of the access policy of key 1 is being modified."
   }
 
