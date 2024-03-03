@@ -11,6 +11,7 @@
 
 | Module version | Terraform version | AzureRM version |
 | -------------- | ----------------- | --------------- |
+| >= 2.x.x       | >= 1.3.x          | >= 3.69.0       |
 | >= 1.x.x       | >= 0.13.x         | >= 2.34.0       |
 
 <!-- BEGIN_TF_DOCS -->
@@ -89,8 +90,8 @@ The following outputs are exported:
 |resource_group_name|The name of the resource group in which to create the virtual network.|no|
 |location|The location/region where the virtual network is created.|no|
 |tags|The tags assigned to the resource.|no|
+|contacts|Blocks containing each contact.|no|
 |access_policies|Blocks containing configuration of each access policy.|no|
 |keys|Blocks containing configuration of each key.|no|
 |secrets|Blocks containing configuration of each secret.|no|
-|contacts|Blocks containing each contact.|no|
 <!-- END_TF_DOCS -->

@@ -1,4 +1,24 @@
 <!-- markdownlint-disable MD041 MD013 -->
+## 2.0.0 (March 03, 2024)
+
+BREAKING CHANGES:
+
+* dependencies: updating to `v1.3.0` minimum of `terraform`
+* dependencies: updating to `v3.69.0` minimum of `hashicorp/azurerm` provider.
+* The internal name by which the `azurerm_key_vault` resource is defined was defined as `vault`. This has been changed by `kv` to maintain the internal consistency of the module, so the resources deployed in the previous version of the module are not compatible with this new version.
+* The internal name by which the `azurerm_key_vault_key` resource is defined was defined as `vault`. This has been changed by `keys` to maintain the internal consistency of the module, so the resources deployed in the previous version of the module are not compatible with this new version.
+* The internal name by which the `azurerm_key_vault_secret` resource is defined was defined as `vault`. This has been changed by `secrets` to maintain the internal consistency of the module, so the resources deployed in the previous version of the module are not compatible with this new version.
+
+ENHANCEMENTS:
+
+* Internal changes that do not modify the operation of the module.
+* Internal changes that change the way data is received by child parameters, but do not change the behavior of the module.
+
+BUG FIXES:
+
+* Output `keys`: The wrong parameter output.
+* Output `secrets`: The wrong parameter output.
+
 ## 1.1.0 (February 11, 2021)
 
 FEATURES:
