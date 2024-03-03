@@ -63,142 +63,142 @@ run "plan" {
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.name == run.setup.workspace_id
+    condition     = azurerm_key_vault.kv.name == run.setup.workspace_id
     error_message = "The key vault name input variable is being modified."
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.resource_group_name == run.setup.resource_group_name
+    condition     = azurerm_key_vault.kv.resource_group_name == run.setup.resource_group_name
     error_message = "The key vault resource group input variable is being modified."
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.location == run.setup.resource_group_location
+    condition     = azurerm_key_vault.kv.location == run.setup.resource_group_location
     error_message = "The key vault location input variable is being modified."
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.sku_name == lower(var.sku_name)
+    condition     = azurerm_key_vault.kv.sku_name == lower(var.sku_name)
     error_message = "The key vault sku input variable is being modified."
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.tenant_id == run.setup.tenant_id
+    condition     = azurerm_key_vault.kv.tenant_id == run.setup.tenant_id
     error_message = "The tenant id of key vault is being modified."
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.soft_delete_retention_days == var.soft_delete_retention_days
+    condition     = azurerm_key_vault.kv.soft_delete_retention_days == var.soft_delete_retention_days
     error_message = "The soft delete retention days of key vault is being modified."
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.purge_protection_enabled == var.purge_protection_enabled
+    condition     = azurerm_key_vault.kv.purge_protection_enabled == var.purge_protection_enabled
     error_message = "The purge protection of key vault is being modified."
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.enabled_for_deployment == var.enabled_for_deployment
+    condition     = azurerm_key_vault.kv.enabled_for_deployment == var.enabled_for_deployment
     error_message = "The enabled for deployment of key vault is being modified."
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.enabled_for_disk_encryption == var.enabled_for_disk_encryption
+    condition     = azurerm_key_vault.kv.enabled_for_disk_encryption == var.enabled_for_disk_encryption
     error_message = "The enabled for disk encryption of key vault is being modified."
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.enabled_for_template_deployment == var.enabled_for_template_deployment
+    condition     = azurerm_key_vault.kv.enabled_for_template_deployment == var.enabled_for_template_deployment
     error_message = "The enabled for template deployment of key vault is being modified."
   }
 
   assert {
-    condition     = azurerm_key_vault.vault.enable_rbac_authorization == var.enable_rbac_authorization
+    condition     = azurerm_key_vault.kv.enable_rbac_authorization == var.enable_rbac_authorization
     error_message = "The enable rbac authorization of key vault is being modified."
   }
 
   assert {
-    condition     = ({ for p in azurerm_key_vault.vault.access_policy : p.object_id => p })[run.setup.user1_object_id].object_id == run.setup.user1_object_id
+    condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user1_object_id].object_id == run.setup.user1_object_id
     error_message = "The object id of the access policy of user 1 is being modified."
   }
 
   assert {
-    condition     = tolist(({ for p in azurerm_key_vault.vault.access_policy : p.object_id => p })[run.setup.user1_object_id].secret_permissions) == tolist(["Get", "List", "Set", "Delete", "Recover", "Backup"])
+    condition     = tolist(({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user1_object_id].secret_permissions) == tolist(["Get", "List", "Set", "Delete", "Recover", "Backup"])
     error_message = "The secret permissions of the access policy of user 1 is being modified."
   }
 
   assert {
-    condition     = tolist(({ for p in azurerm_key_vault.vault.access_policy : p.object_id => p })[run.setup.user1_object_id].storage_permissions) == tolist(["Get", "List", "Update", "Set", "Delete", "Recover", "Backup"])
+    condition     = tolist(({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user1_object_id].storage_permissions) == tolist(["Get", "List", "Update", "Set", "Delete", "Recover", "Backup"])
     error_message = "The storage permissions of the access policy of user 1 is being modified."
   }
 
   assert {
-    condition     = ({ for p in azurerm_key_vault.vault.access_policy : p.object_id => p })[run.setup.user2_object_id].object_id == run.setup.user2_object_id
+    condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user2_object_id].object_id == run.setup.user2_object_id
     error_message = "The object id of the access policy of user 2 is being modified."
   }
 
   assert {
-    condition     = ({ for p in azurerm_key_vault.vault.access_policy : p.object_id => p })[run.setup.user2_object_id].application_id == run.setup.app1_object_id
+    condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user2_object_id].application_id == run.setup.app1_object_id
     error_message = "The application id of the access policy of user 2 is being modified."
   }
 
   assert {
-    condition     = tolist(({ for p in azurerm_key_vault.vault.access_policy : p.object_id => p })[run.setup.user2_object_id].key_permissions) == tolist(["Get", "List", "Update", "Create", "Import", "Delete"])
+    condition     = tolist(({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user2_object_id].key_permissions) == tolist(["Get", "List", "Update", "Create", "Import", "Delete"])
     error_message = "The key permissions of the access policy of user 1 is being modified."
   }
 
   assert {
-    condition     = ({ for p in azurerm_key_vault.vault.access_policy : p.object_id => p })[run.setup.app2_object_id].object_id == run.setup.app2_object_id
+    condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.app2_object_id].object_id == run.setup.app2_object_id
     error_message = "The object id of the access policy of app 2 is being modified."
   }
 
   assert {
-    condition     = tolist(({ for p in azurerm_key_vault.vault.access_policy : p.object_id => p })[run.setup.app2_object_id].certificate_permissions) == tolist(["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup"])
+    condition     = tolist(({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.app2_object_id].certificate_permissions) == tolist(["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup"])
     error_message = "The certificate permissions of the access policy of user 1 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurerm_key_vault_key.vault : k.name => k })["KeyTest1"].name == "KeyTest1"
+    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest1"].name == "KeyTest1"
     error_message = "The name of the access policy of key 1 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurerm_key_vault_key.vault : k.name => k })["KeyTest1"].key_type == "EC"
+    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest1"].key_type == "EC"
     error_message = "The key type of the access policy of key 1 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurerm_key_vault_key.vault : k.name => k })["KeyTest1"].curve == "P-384"
+    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest1"].curve == "P-384"
     error_message = "The curve of the access policy of key 1 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurerm_key_vault_key.vault : k.name => k })["KeyTest2"].name == "KeyTest2"
+    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest2"].name == "KeyTest2"
     error_message = "The name of the access policy of key 2 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurerm_key_vault_key.vault : k.name => k })["KeyTest2"].key_type == "RSA"
+    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest2"].key_type == "RSA"
     error_message = "The key type of the access policy of key 2 is being modified."
   }
 
   assert {
-    condition     = ({ for k in azurerm_key_vault_key.vault : k.name => k })["KeyTest2"].key_size == 2048
+    condition     = ({ for k in azurermazurerm_key_vault_key.keys : k.name => k })["KeyTest2"].key_size == 2048
     error_message = "The key size of the access policy of key 1 is being modified."
   }
 
   assert {
-    condition     = ({ for s in azurerm_key_vault_secret.vault : s.name => s })["Secret1"].name == "Secret1"
+    condition     = ({ for s in azurerm_key_vault_secret.secrets : s.name => s })["Secret1"].name == "Secret1"
     error_message = "The name of the access policy of secret 1 is being modified."
   }
 
   assert {
-    condition     = ({ for s in azurerm_key_vault_secret.vault : s.name => s })["Secret1"].value == "password"
+    condition     = ({ for s in azurerm_key_vault_secret.secrets : s.name => s })["Secret1"].value == "password"
     error_message = "The value of the access policy of secret 1 is being modified."
   }
 
   assert {
-    condition     = ({ for s in azurerm_key_vault_secret.vault : s.name => s })["Secret1"].content_type == "description"
+    condition     = ({ for s in azurerm_key_vault_secret.secrets : s.name => s })["Secret1"].content_type == "description"
     error_message = "The content type of the access policy of secret 1 is being modified."
   }
 }
