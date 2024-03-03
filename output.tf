@@ -42,5 +42,6 @@ output "keys" {
 output "secrets" {
   value       = { for secret in azurerm_key_vault_secret.secrets : secret.name => secret }
   description = "Blocks containing configuration of each secret."
+  sensitive   = true
   # module.MODULE_NAME.keys["SECRET_NAME"].id
 }
