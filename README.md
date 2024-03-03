@@ -53,7 +53,7 @@ The `keys` supports the following:
 | Name | Description | Type | Default | Required |
 | ---- | ------------| :--: | :-----: | :------: |
 |name|Specifies the name of the Key Vault Key.|`string`|n/a|yes|
-|key\_type|Specifies the Key Type to use for this Key Vault Key. Possible values are `EC` (Elliptic Curve), `EC-HSM`, `Oct` (Octet), `RSA` and `RSA-HSM`.|`string`|n/a|yes|
+|key\_type|Specifies the Key Type to use for this Key Vault Key. Possible values are `EC` (Elliptic Curve), `EC-HSM`, `Oct` (Octet), `RSA` and `RSA-HSM`.|`number`|n/a|yes|
 |key\_size|Specifies the Size of the RSA key to create in bytes. For example, 1024 or 2048. Note: This field is required if `key_type` is `RSA` or `RSA-HSM`.|`string`|`null`|no|
 |curve|Specifies the curve to use when creating an `EC` key. Possible values are: `P-256`, `P-384`, `P-521` and `SECP256K1`.|`string`|`null`|no|
 |key\_opts|A list of JSON web key operations. Possible values include: `decrypt`, `encrypt`, `sign`, `unwrapKey`, `verify` and `wrapKey`.|`list(string)`|`[]`|yes|

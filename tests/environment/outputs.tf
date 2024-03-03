@@ -18,6 +18,10 @@ output "user1_object_id" {
   value = azuread_user.user1.object_id
 }
 
+output "self_object_id" {
+  value = data.azurerm_client_config.current.object_id
+}
+
 output "user2_object_id" {
   value = azuread_user.user2.object_id
 }
