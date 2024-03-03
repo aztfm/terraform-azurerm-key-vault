@@ -1,4 +1,4 @@
-resource "azurerm_key_vault" "vault" {
+resource "azurerm_key_vault" "kv" {
   name                            = var.name
   resource_group_name             = var.resource_group_name
   location                        = var.location
@@ -11,6 +11,16 @@ resource "azurerm_key_vault" "vault" {
   enabled_for_disk_encryption     = var.enabled_for_disk_encryption
   enabled_for_template_deployment = var.enabled_for_template_deployment
   enable_rbac_authorization       = var.enable_rbac_authorization
+
+  dynamic "contact" {
+    for_each = var.contacts
+
+    content {
+      email = contact.value.email
+      name  = contact.value.name
+      phone = contact.value.phone
+    }
+  }
 
   dynamic "access_policy" {
     for_each = var.access_policies
@@ -25,21 +35,11 @@ resource "azurerm_key_vault" "vault" {
       storage_permissions     = access_policy.value.storage_permissions
     }
   }
-
-  dynamic "contact" {
-    for_each = var.contacts
-
-    content {
-      email = contact.value.email
-      name  = contact.value.name
-      phone = contact.value.phone
-    }
-  }
 }
 
-resource "azurerm_key_vault_key" "vault" {
+resource "azurerm_key_vault_key" "keys" {
   for_each        = { for key in var.keys : key.name => key }
-  key_vault_id    = azurerm_key_vault.vault.id
+  key_vault_id    = azurerm_key_vault.kv.id
   name            = each.value.name
   key_type        = each.value.key_type
   key_size        = each.value.key_size
@@ -49,9 +49,9 @@ resource "azurerm_key_vault_key" "vault" {
   expiration_date = each.value.expiration_date
 }
 
-resource "azurerm_key_vault_secret" "vault" {
+resource "azurerm_key_vault_secret" "secrets" {
   for_each        = { for secret in var.secrets : secret.name => secret }
-  key_vault_id    = azurerm_key_vault.vault.id
+  key_vault_id    = azurerm_key_vault.kv.id
   name            = each.value.name
   value           = each.value.value
   content_type    = each.value.content_type
