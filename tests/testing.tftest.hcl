@@ -46,7 +46,7 @@ run "plan" {
       object_id               = run.setup.app2_object_id
       certificate_permissions = ["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup"]
     }]
-      keys = [{
+    keys = [{
       name     = "KeyTest1"
       key_type = "EC"
       curve    = "P-384"
