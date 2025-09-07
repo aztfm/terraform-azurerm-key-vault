@@ -34,14 +34,14 @@ run "plan" {
       object_id          = run.setup.self_object_id
       key_permissions    = ["Get", "List", "Update", "Create", "Delete", "Purge"]
       secret_permissions = ["Get", "List", "Set", "Delete", "Purge"]
-      # }, {
-      # object_id           = run.setup.user1_object_id
-      # secret_permissions  = ["Get", "List", "Set", "Delete", "Recover", "Backup"]
-      # storage_permissions = ["Get", "List", "Update", "Set", "Delete", "Recover", "Backup"]
-      # }, {
-      # object_id       = run.setup.user2_object_id
-      # application_id  = run.setup.app1_object_id
-      # key_permissions = ["Get", "List", "Update", "Create", "Import", "Delete"]
+      }, {
+      object_id           = run.setup.user1_object_id
+      secret_permissions  = ["Get", "List", "Set", "Delete", "Recover", "Backup"]
+      storage_permissions = ["Get", "List", "Update", "Set", "Delete", "Recover", "Backup"]
+      }, {
+      object_id       = run.setup.user2_object_id
+      application_id  = run.setup.app1_object_id
+      key_permissions = ["Get", "List", "Update", "Create", "Import", "Delete"]
       }, {
       object_id               = run.setup.app2_object_id
       certificate_permissions = ["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup"]
@@ -117,35 +117,35 @@ run "plan" {
     error_message = "The enable rbac authorization of key vault is being modified."
   }
 
-  # assert {
-  #   condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user1_object_id].object_id == run.setup.user1_object_id
-  #   error_message = "The object id of the access policy of user 1 is being modified."
-  # }
+  assert {
+    condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user1_object_id].object_id == run.setup.user1_object_id
+    error_message = "The object id of the access policy of user 1 is being modified."
+  }
 
-  # assert {
-  #   condition     = tolist(({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user1_object_id].secret_permissions) == tolist(["Get", "List", "Set", "Delete", "Recover", "Backup"])
-  #   error_message = "The secret permissions of the access policy of user 1 is being modified."
-  # }
+  assert {
+    condition     = tolist(({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user1_object_id].secret_permissions) == tolist(["Get", "List", "Set", "Delete", "Recover", "Backup"])
+    error_message = "The secret permissions of the access policy of user 1 is being modified."
+  }
 
-  # assert {
-  #   condition     = tolist(({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user1_object_id].storage_permissions) == tolist(["Get", "List", "Update", "Set", "Delete", "Recover", "Backup"])
-  #   error_message = "The storage permissions of the access policy of user 1 is being modified."
-  # }
+  assert {
+    condition     = tolist(({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user1_object_id].storage_permissions) == tolist(["Get", "List", "Update", "Set", "Delete", "Recover", "Backup"])
+    error_message = "The storage permissions of the access policy of user 1 is being modified."
+  }
 
-  # assert {
-  #   condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user2_object_id].object_id == run.setup.user2_object_id
-  #   error_message = "The object id of the access policy of user 2 is being modified."
-  # }
+  assert {
+    condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user2_object_id].object_id == run.setup.user2_object_id
+    error_message = "The object id of the access policy of user 2 is being modified."
+  }
 
-  # assert {
-  #   condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user2_object_id].application_id == run.setup.app1_object_id
-  #   error_message = "The application id of the access policy of user 2 is being modified."
-  # }
+  assert {
+    condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user2_object_id].application_id == run.setup.app1_object_id
+    error_message = "The application id of the access policy of user 2 is being modified."
+  }
 
-  # assert {
-  #   condition     = tolist(({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user2_object_id].key_permissions) == tolist(["Get", "List", "Update", "Create", "Import", "Delete"])
-  #   error_message = "The key permissions of the access policy of user 1 is being modified."
-  # }
+  assert {
+    condition     = tolist(({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.user2_object_id].key_permissions) == tolist(["Get", "List", "Update", "Create", "Import", "Delete"])
+    error_message = "The key permissions of the access policy of user 1 is being modified."
+  }
 
   assert {
     condition     = ({ for p in azurerm_key_vault.kv.access_policy : p.object_id => p })[run.setup.app2_object_id].object_id == run.setup.app2_object_id
@@ -212,14 +212,14 @@ run "apply" {
     location            = run.setup.resource_group_location
     tenant_id           = run.setup.tenant_id
     access_policies = [{
-      #   object_id           = run.setup.user1_object_id
-      #   secret_permissions  = ["Get", "List", "Set", "Delete", "Recover", "Backup"]
-      #   storage_permissions = ["Get", "List", "Update", "Set", "Delete", "Recover", "Backup"]
-      #   }, {
-      #   object_id       = run.setup.user2_object_id
-      #   application_id  = run.setup.app1_object_id
-      #   key_permissions = ["Get", "List", "Update", "Create", "Import", "Delete"]
-      #   }, {
+      object_id           = run.setup.user1_object_id
+      secret_permissions  = ["Get", "List", "Set", "Delete", "Recover", "Backup"]
+      storage_permissions = ["Get", "List", "Update", "Set", "Delete", "Recover", "Backup"]
+      }, {
+      object_id       = run.setup.user2_object_id
+      application_id  = run.setup.app1_object_id
+      key_permissions = ["Get", "List", "Update", "Create", "Import", "Delete"]
+      }, {
       object_id               = run.setup.app2_object_id
       certificate_permissions = ["Get", "List", "Update", "Create", "Import", "Delete", "Recover", "Backup"]
     }]
