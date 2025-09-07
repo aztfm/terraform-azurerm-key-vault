@@ -1,4 +1,4 @@
-# data "azuread_domains" "tenant" {}
+data "azuread_domains" "tenant" {}
 
 data "azurerm_client_config" "current" {}
 
