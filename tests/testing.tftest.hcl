@@ -1,3 +1,7 @@
+provider "azuread" {
+  use_oidc = true
+}
+
 provider "azurerm" {
   features {
     resource_group {
