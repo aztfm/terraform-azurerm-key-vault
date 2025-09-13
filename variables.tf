@@ -71,6 +71,16 @@ variable "enable_rbac_authorization" {
   description = "Boolean flag to specify whether Azure Key Vault uses Role Based Access Control (RBAC) for authorization of data actions."
 }
 
+variable "contacts" {
+  type = list(object({
+    email = string
+    name  = optional(string)
+    phone = optional(string)
+  }))
+  default     = []
+  description = "List of objects that represent each contact."
+}
+
 variable "access_policies" {
   type = list(object({
     object_id               = string
@@ -82,6 +92,27 @@ variable "access_policies" {
   }))
   default     = []
   description = "List of objects that represent the configuration of each access policies."
+}
+
+variable "network_acls" {
+  type = object({
+    bypass                     = optional(string, "None")
+    default_action             = optional(string, "Deny")
+    ip_rules                   = optional(list(string), [])
+    virtual_network_subnet_ids = optional(list(string), [])
+  })
+  default     = null
+  description = "A mapping with the network ACLs for the Key Vault."
+
+  validation {
+    condition     = var.network_acls == null || contains(["AzureServices", "None"], var.network_acls.bypass)
+    error_message = "The bypass must be one of 'AzureServices' or 'None'."
+  }
+
+  validation {
+    condition     = var.network_acls == null || contains(["Allow", "Deny"], var.network_acls.default_action)
+    error_message = "The default_action must be one of 'Allow' or 'Deny'."
+  }
 }
 
 variable "keys" {
@@ -108,14 +139,4 @@ variable "secrets" {
   }))
   default     = []
   description = "List of objects that represent the configuration of each secret."
-}
-
-variable "contacts" {
-  type = list(object({
-    email = string
-    name  = optional(string)
-    phone = optional(string)
-  }))
-  default     = []
-  description = "List of objects that represent each contact."
 }

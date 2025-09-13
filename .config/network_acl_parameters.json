@@ -1,0 +1,40 @@
+[
+    {
+        "Name": "bypass",
+        "Description": "Specifies which traffic can bypass the network rules. Possible values are",
+        "Type": "string",
+        "Default": "None",
+        "Required": "no",
+        "Support": [
+            "AzureServices",
+            "None"
+        ]
+    },
+    {
+        "Name": "default_action",
+        "Description": "The Default Action to use when no rules match from `ip_rules` or `virtual_network_subnet_ids`. Possible values are",
+        "Type": "string",
+        "Default": "null",
+        "Required": "no",
+        "Support": [
+            "Allow",
+            "Deny"
+        ]
+    },
+    {
+        "Name": "ip_rules",
+        "Description": "One or more IP Addresses, or CIDR Blocks which should be able to access the Key Vault.",
+        "Type": "list(string)",
+        "Default": "[]",
+        "Required": "no",
+        "Support": []
+    },
+    {
+        "Name": "virtual_network_subnet_ids",
+        "Description": "One or more Subnet IDs which should be able to access this Key Vault.",
+        "Type": "list(string)",
+        "Default": "[]",
+        "Required": "no",
+        "Support": []
+    }
+]
