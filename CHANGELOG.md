@@ -1,4 +1,9 @@
-<!-- markdownlint-disable MD041 MD013 -->
+## 3.0.0 (Unreleased)
+
+FEATURES:
+
+* **New Parameter:** `public_network_access_enabled`
+
 ## 2.0.0 (March 03, 2024)
 
 BREAKING CHANGES:
