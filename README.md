@@ -66,10 +66,11 @@ The following parameters are supported:
 |enabled\_for\_disk\_encryption|Boolean flag to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys.|`bool`|`false`|no|
 |enabled\_for\_template\_deployment|Boolean flag to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault.|`bool`|`false`|no|
 |enable\_rbac\_authorization|Boolean flag to specify whether Azure Key Vault uses Role Based Access Control (RBAC) for authorization of data actions.|`bool`|`false`|no|
+|contacts|List of objects that represent each contact.|`list(object({}))`|`[]`|no|
 |access\_policies|List of objects that represent the configuration of each access policies.|`list(object({}))`|`[]`|no|
+|network\_acls|A mapping with the network ACLs for the Key Vault.|`object({})`|`null`|no|
 |keys|List of objects that represent the configuration of each key.|`list(object({}))`|`[]`|no|
 |secrets|List of objects that represent the configuration of each secret.|`list(object({}))`|`[]`|no|
-|contacts|List of objects that represent each contact.|`list(object({}))`|`[]`|no|
 
 The `access_policies` supports the following:
 

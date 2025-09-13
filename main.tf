@@ -35,6 +35,17 @@ resource "azurerm_key_vault" "kv" {
       storage_permissions     = access_policy.value.storage_permissions
     }
   }
+
+  dynamic "network_acls" {
+    for_each = var.network_acls == null ? [] : [""]
+
+    content {
+      bypass                     = var.network_acls.bypass
+      default_action             = var.network_acls.default_action
+      ip_rules                   = var.network_acls.ip_rules
+      virtual_network_subnet_ids = var.network_acls.virtual_network_subnet_ids
+    }
+  }
 }
 
 resource "azurerm_key_vault_key" "keys" {
