@@ -35,6 +35,12 @@ variable "soft_delete_retention_days" {
   description = "The number of days that items should be retained for once soft-deleted. This value can be between 7 and 90 days."
 }
 
+variable "public_network_access_enabled" {
+  type        = bool
+  default     = false
+  description = "Whether public network access is allowed for this Key Vault."
+}
+
 variable "purge_protection_enabled" {
   type        = bool
   default     = false
