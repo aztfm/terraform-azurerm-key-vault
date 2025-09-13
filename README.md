@@ -1,21 +1,54 @@
-<!-- markdownlint-disable MD013 -->
 # Azure Key Vault - Terraform Module
 
+[devcontainer]: https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/aztfm/terraform-azurerm-key-vault
+[registry]: https://registry.terraform.io/modules/aztfm/key-vault/azurerm/
+[releases]: https://github.com/aztfm/terraform-azurerm-key-vault/releases
+
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
-[![TF Registry](https://img.shields.io/badge/terraform-registry-blueviolet.svg)](https://registry.terraform.io/modules/aztfm/key-vault/azurerm/)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/aztfm/terraform-azurerm-key-vault)
+[![Terraform Registry](https://img.shields.io/badge/terraform-registry-blueviolet?logo=terraform&logoColor=white)][registry]
+[![Dev Container](https://img.shields.io/badge/devcontainer-VSCode-blue?logo=linuxcontainers)][devcontainer]
+[![License](https://img.shields.io/github/license/aztfm/terraform-azurerm-key-vault)](LICENSE)
+[![Last release](https://img.shields.io/github/v/release/aztfm/terraform-azurerm-key-vault)][releases]
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/aztfm/terraform-azurerm-key-vault?quickstart=1)
 
-## Version compatibility
+## :gear: Version compatibility
 
 | Module version | Terraform version | AzureRM version |
 | -------------- | ----------------- | --------------- |
 | >= 2.x.x       | >= 1.3.x          | >= 3.69.0       |
 | >= 1.x.x       | >= 0.13.x         | >= 2.34.0       |
 
+## :memo: Usage
+
+```hcl
+resource "azurerm_resource_group" "rg" {
+  name     = "resource-group"
+  location = "Spain Central"
+}
+
+module "key_vault" {
+  source              = "aztfm/key-vault/azurerm"
+  version             = ">=2.0.0"
+  name                = "key-vault"
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  sku_name            = "standard"
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  access_policies = [
+    {
+      object_id          = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXX"
+      secret_permissions = ["set","get","delete","purge","recover"]
+    }
+  ]
+  secrets = [{ name = "secret-1", value = "text" }]
+}
+```
+
+Reference to more [examples](https://github.com/aztfm/terraform-azurerm-key-vault/tree/main/examples).
+
 <!-- BEGIN_TF_DOCS -->
-## Parameters
+## :arrow_forward: Parameters
 
 The following parameters are supported:
 
@@ -35,7 +68,7 @@ The following parameters are supported:
 |enable\_rbac\_authorization|Boolean flag to specify whether Azure Key Vault uses Role Based Access Control (RBAC) for authorization of data actions.|`bool`|`false`|no|
 |access\_policies|List of objects that represent the configuration of each access policies.|`list(object({}))`|`[]`|no|
 |keys|List of objects that represent the configuration of each key.|`list(object({}))`|`[]`|no|
-|secrets|List of objects that represent the configuration of each secrect.|`list(object({}))`|`[]`|no|
+|secrets|List of objects that represent the configuration of each secret.|`list(object({}))`|`[]`|no|
 |contacts|List of objects that represent each contact.|`list(object({}))`|`[]`|no|
 
 The `access_policies` supports the following:
@@ -79,7 +112,7 @@ The `contacts` supports the following:
 |name|Name of the contact.|`string`|`null`|no|
 |phone|Phone number of the contact.|`string`|`null`|no|
 
-## Outputs
+## :arrow_backward: Outputs
 
 The following outputs are exported:
 

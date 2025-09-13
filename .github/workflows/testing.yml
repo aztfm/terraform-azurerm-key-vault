@@ -28,12 +28,12 @@ jobs:
 
     steps:
       - name: Download repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: "~>1.6.0"
+          terraform_version: "1.9.0"
 
       - name: Terraform init
         run: terraform init
