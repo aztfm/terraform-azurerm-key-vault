@@ -101,7 +101,7 @@ variable "secrets" {
     expiration_date = optional(string)
   }))
   default     = []
-  description = "List of objects that represent the configuration of each secrect."
+  description = "List of objects that represent the configuration of each secret."
 }
 
 variable "contacts" {
