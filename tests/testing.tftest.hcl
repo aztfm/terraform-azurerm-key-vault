@@ -93,6 +93,11 @@ run "plan" {
   }
 
   assert {
+    condition     = azurerm_key_vault.kv.public_network_access_enabled == var.public_network_access_enabled
+    error_message = "The public network access of key vault is being modified."
+  }
+
+  assert {
     condition     = azurerm_key_vault.kv.purge_protection_enabled == var.purge_protection_enabled
     error_message = "The purge protection of key vault is being modified."
   }

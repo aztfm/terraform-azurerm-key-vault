@@ -61,6 +61,7 @@ The following parameters are supported:
 |sku\_name|The Name of the SKU used for this Key Vault. Possible values are standard and premium.|`string`|n/a|yes|
 |tenant\_id|The Azure Active Directory tenant ID that should be used for authenticating requests to the key vault.|`string`|n/a|yes|
 |soft\_delete\_retention\_days|The number of days that items should be retained for once soft-deleted. This value can be between 7 and 90 days.|`number`|`90`|no|
+|public\_network\_access\_enabled|Whether public network access is allowed for this Key Vault.|`bool`|`false`|no|
 |purge\_protection\_enabled|Is Purge Protection enabled for this Key Vault?|`bool`|`false`|no|
 |enabled\_for\_deployment|Boolean flag to specify whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the key vault.|`bool`|`false`|no|
 |enabled\_for\_disk\_encryption|Boolean flag to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys.|`bool`|`false`|no|

@@ -6,6 +6,7 @@ resource "azurerm_key_vault" "kv" {
   sku_name                        = lower(var.sku_name)
   tenant_id                       = var.tenant_id
   soft_delete_retention_days      = var.soft_delete_retention_days
+  public_network_access_enabled   = var.public_network_access_enabled
   purge_protection_enabled        = var.purge_protection_enabled
   enabled_for_deployment          = var.enabled_for_deployment
   enabled_for_disk_encryption     = var.enabled_for_disk_encryption
